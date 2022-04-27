@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="b772b7cb-b7cc-45a8-8e8a-f5b764f9ea41" name="Default Changelist" comment="">
+      <change beforePath="$USER_HOME$/Desktop/microblog/.idea/workspace.xml" beforeDir="false" afterPath="$USER_HOME$/Desktop/microblog/.idea/workspace.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$USER_HOME$/Desktop/microblog" />
+  </component>
+  <component name="ProjectId" id="28181rpmQJXcIGTjqpzrRPq7tJD" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b772b7cb-b7cc-45a8-8e8a-f5b764f9ea41" name="Default Changelist" comment="" />
+      <created>1650372521959</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1650372521959</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="689" y="320" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1650528246786">
+      <screen x="0" y="23" width="1920" height="974" />
+    </state>
+    <state x="689" y="320" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1920.974@0.23.1920.974" timestamp="1650528246786" />
+    <state x="716" y="113" key="#models" timestamp="1650868034688">
+      <screen x="0" y="23" width="1920" height="974" />
+    </state>
+    <state x="716" y="113" key="#models/0.23.1920.974@0.23.1920.974" timestamp="1650868034688" />
+    <state x="552" y="149" key="SettingsEditor" timestamp="1650612703497">
+      <screen x="0" y="23" width="1920" height="974" />
+    </state>
+    <state x="552" y="149" key="SettingsEditor/0.23.1920.974@0.23.1920.974" timestamp="1650612703497" />
+    <state x="673" y="291" width="667" height="486" key="find.popup" timestamp="1650624950430">
+      <screen x="0" y="23" width="1920" height="974" />
+    </state>
+    <state x="673" y="291" width="667" height="486" key="find.popup/0.23.1920.974@0.23.1920.974" timestamp="1650624950430" />
+    <state x="672" y="261" width="670" height="676" key="search.everywhere.popup" timestamp="1650631475397">
+      <screen x="0" y="23" width="1920" height="974" />
+    </state>
+    <state x="672" y="261" width="670" height="676" key="search.everywhere.popup/0.23.1920.974@0.23.1920.974" timestamp="1650631475397" />
+  </component>
+</project>
