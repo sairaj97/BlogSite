@@ -31,6 +31,34 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
+  <component name="RunManager">
+    <configuration name="views" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="website" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$$PROJECT_DIR$/../../.." />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$$PROJECT_DIR$/../../../views.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.views" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -53,6 +81,11 @@
       <screen x="0" y="23" width="1920" height="974" />
     </state>
     <state x="716" y="113" key="#models/0.23.1920.974@0.23.1920.974" timestamp="1650868034688" />
+    <state x="666" y="108" key="#views" timestamp="1651151799492">
+      <screen x="0" y="23" width="1920" height="960" />
+    </state>
+    <state x="666" y="108" key="#views/0.23.1920.960@0.23.1920.960" timestamp="1651151799492" />
+    <state x="666" y="108" key="#views/0.23.1920.963@0.23.1920.963" timestamp="1651073206554" />
     <state x="552" y="149" key="SettingsEditor" timestamp="1650612703497">
       <screen x="0" y="23" width="1920" height="974" />
     </state>
@@ -61,9 +94,10 @@
       <screen x="0" y="23" width="1920" height="974" />
     </state>
     <state x="673" y="291" width="667" height="486" key="find.popup/0.23.1920.974@0.23.1920.974" timestamp="1650624950430" />
-    <state x="672" y="261" width="670" height="676" key="search.everywhere.popup" timestamp="1650631475397">
-      <screen x="0" y="23" width="1920" height="974" />
+    <state x="672" y="258" width="670" height="667" key="search.everywhere.popup" timestamp="1651129797748">
+      <screen x="0" y="23" width="1920" height="960" />
     </state>
+    <state x="672" y="258" width="670" height="667" key="search.everywhere.popup/0.23.1920.960@0.23.1920.960" timestamp="1651129797748" />
     <state x="672" y="261" width="670" height="676" key="search.everywhere.popup/0.23.1920.974@0.23.1920.974" timestamp="1650631475397" />
   </component>
 </project>

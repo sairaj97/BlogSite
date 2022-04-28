@@ -20,7 +20,7 @@ class Users (AbstractUser):
     phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$',
             message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")
     phone_number = models.CharField(validators=[phone_regex], max_length=17, unique=True)
-    is_admin = models.BooleanField(default=False)
+    is_admin = models.IntegerField(default=0)
     is_deleted = models.BooleanField(default=False)
     modified_date = models.DateTimeField(default=timezone.now)
 
@@ -41,7 +41,7 @@ class User_details (models.Model):
         (Male, 'Male'),
         (FeMale, 'Female'),
     )
-    user_id = models.ForeignKey(Users, on_delete=models.CASCADE, null=True, blank=True)
+    user = models.ForeignKey(Users, on_delete=models.CASCADE, null=True, blank=True)
     first_name = models.CharField(max_length=20, null=False)
     last_name = models.CharField(max_length=20, null=False)
     age = models.IntegerField(null=False)
@@ -55,6 +55,8 @@ class Post (models.Model):
     blog_title = models.CharField(max_length=200, null=False)
     post_here = models.TextField(max_length=500, null=False)
     time_stamp = models.DateTimeField(default=timezone.now)
+    posted_by = models.CharField(max_length=50, null=False)
+    is_deleted = models.BooleanField(default=False)
 
 
 class CustomUserManager(BaseUserManager):

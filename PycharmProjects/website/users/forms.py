@@ -12,7 +12,7 @@ class RegistrationForm1(ModelForm):
         model = User_details
 
         # Custom fields
-        fields = ["first_name", "last_name", "age", "gender", "address", "user_id"]
+        fields = ["first_name", "last_name", "age", "gender", "address", "user"]
 
     # this function will be used for the validation
     def clean(self):
@@ -43,7 +43,7 @@ class RegistrationForm2(UserCreationForm):
         model = Users
 
         # Custom fields
-        fields = ["username","email", "phone_number"]
+        fields = ["username","email", "phone_number","is_admin"]
 
 
 class LogInForm(forms.Form):
