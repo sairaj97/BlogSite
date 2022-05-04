@@ -1,0 +1,25 @@
+{% load static %}
+
+ <header class="topbar" data-navbarbg="skin5">
+     <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Blogging Site</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Home</a></li>
+      <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{% static 'images/users/1.jpg' %}" alt="user" class="rounded-circle" width="31"></a>
+                            <div class="dropdown-menu dropdown-menu-right user-dd animated">
+                                <a class="dropdown-item" href="{% url 'users:logout' %}"><i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
+
+
+                            </div>
+                        </li>
+    </ul>
+    <a class="btn btn-danger navbar-btn"href="{% url 'users:logout' %}" >Logout</a>
+
+  </div>
+</nav>
+
+        </header>

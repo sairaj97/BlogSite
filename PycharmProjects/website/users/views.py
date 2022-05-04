@@ -29,7 +29,7 @@ def signup1(request):
 
             # redirect it to some another page indicating data
             # was inserted successfully
-            return HttpResponse("Register successfully")
+            return redirect(reverse('users:signup'))
 
         else:
 
@@ -47,43 +47,57 @@ def signup1(request):
 
 def signup(request):
     # check if the request is post
+    error = False
+    if request.user.is_authenticated:
+        return redirect(reverse('users:index1'))
     if request.method == 'POST':
+        if request.POST.get('submit') == 'Signup':
+            # Pass the form data to the form class
+            details = RegistrationForm2(request.POST)
 
-        # Pass the form data to the form class
-        details = RegistrationForm2(request.POST)
-
-        if details.is_valid():
-
-            # Temporarily make an object to be add some
-            # logic into the data if there is such a need
-            # before writing to the database
-            post = details.save(commit=False)
+            if details.is_valid():
+                # Temporarily make an object to be add some
+                # logic into the data if there is such a need
+                # before writing to the database
+                post = details.save(commit=False)
             # Finally write the changes into database
-            post.save()
+                post.save()
 
             # redirect it to some another page indicating data
             # was inserted successfully
-            return redirect(reverse('users:signup1'))
+                return redirect(reverse('users:signup1'))
 
-        else:
+            else:
+                # Redirect back to the same page if the data
+                # was invalid
+                return render(request, "home1.html", {'form': details})
+        elif request.POST.get('submit') == 'Login':
+            form = LogInForm(request.POST)
+            if form.is_valid():
+                email = form.cleaned_data["email"]
+                password = form.cleaned_data["password"]
+                user = authenticate(email=email, password=password)
+                if user:
+                    login(request, user)
+                    return redirect(reverse('users:index1'))
+                else:
+                    error = True
 
-            # Redirect back to the same page if the data
-            # was invalid
-            return render(request, "signup.html", {'form': details})
     else:
+
 
         # If the request is a GET request then,
         # create an empty form object and
         # render it into the page
-        form = RegistrationForm2(None)
-        return render(request, 'signup.html', {'form': form})
+
+        return render(request, 'home1.html', {'error': error})
 
 
 def log_in(request):
     error = False
     if request.user.is_authenticated:
-        return redirect(reverse('users:index'))
-        #return render(request, 'index.html')
+        return redirect(reverse('users:blogpost'))
+        #return render(request, 'blogpost.html')
     if request.method == "POST":
         form = LogInForm(request.POST)
         if form.is_valid():
@@ -92,21 +106,21 @@ def log_in(request):
             user = authenticate(email=email, password=password)
             if user:
                 login(request, user)
-                return HttpResponse("Login successfully")
+                return redirect(reverse('users:blogpost'))
             else:
                 error = True
     else:
         form = LogInForm()
 
-    return render(request, 'login.html', {'form': form, 'error': error})
+    return render(request, 'home1.html', {'form': form, 'error': error})
 
 
 def log_out(request):
     logout(request)
-    return redirect(reverse('users:login'))
+    return redirect(reverse('users:signup'))
 
 
-def index(request):
+def blogpost(request):
     error = False
     if request.method == "POST":
         current_user = request.user
@@ -119,13 +133,18 @@ def index(request):
             post.user_id = current_user.id
             post.posted_by = current_user
             post.save()
-            return redirect(reverse('users:index'))
-                #render(request, 'index.html', {'form': details, 'error': error})
+            return redirect(reverse('users:blogpost'))
+                #render(request, 'blogpost.html', {'form': details, 'error': error})
     else:
         form = PostForm()
-        return render(request, 'index.html', {'form': form, 'error': error})
+        return render(request, 'blogpost.html', {'form': form, 'error': error})
 
-    return redirect(reverse('users:index'))
+    return redirect(reverse('users:blogpost'))
+
+
+def index1(request):
+    return render(request, 'index1.html')
+
 
 
 class MyBlogListView(ListView):
@@ -174,6 +193,7 @@ def blog_edit(request, pk):
         form = PostForm(instance=obj)
         return render(request, "edit.html", {'form': form})
 
+
 def blog_delete(request, pk):
     obj = get_object_or_404(Post, id=pk)
     if request.method == "POST":
@@ -183,6 +203,31 @@ def blog_delete(request, pk):
             post.is_deleted = True
             post.save()
             return redirect(reverse('users:myblog'))
+    else:
+        form = PostForm(instance=obj)
+        return render(request, "delete.html", {'form': form})
+
+
+def admin_edit(request, pk):
+    obj = get_object_or_404(Post, id=pk)
+    if request.method == "POST":
+        post = PostForm(request.POST or None, instance=obj)
+        if post.is_valid():
+            post.save()
+            return redirect(reverse('users:adminblog'))
+    else:
+        form = PostForm(instance=obj)
+        return render(request, "edit.html", {'form': form})
+
+def admin_delete(request, pk):
+    obj = get_object_or_404(Post, id=pk)
+    if request.method == "POST":
+        details = PostForm(request.POST or None, instance=obj)
+        if details.is_valid():
+            post = details.save(commit=False)
+            post.is_deleted = True
+            post.save()
+            return redirect(reverse('users:adminblog'))
     else:
         form = PostForm(instance=obj)
         return render(request, "delete.html", {'form': form})

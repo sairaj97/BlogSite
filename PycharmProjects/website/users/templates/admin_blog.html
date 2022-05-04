@@ -1,87 +1,68 @@
+{% extends 'base.html' %}
 {% load bootstrap5 %}
 {% bootstrap_messages %}
 
+{% block content %}
 <html lang="en">
-
-<head >
-
-	<title>Blogs Page</title>
-
-	<meta charset="utf-8" />
-
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<style>
-		 body{
-                font-family: Arial, Helvetica, sans-serif;
-                background-color: white;
-            }
-            button{
-                background-color: #4CAF50;
-                width: 25%;
-                padding: 15px;
-                color: black;
-                border: none;
-                float: center;
-                font-size: 15px;
-            }
-            label{
-                font-size: 20px;
-            }
-            form{
-                border: 3px solid #f1f1f1;
-            }
-            input[type=email],input[type=text]{
-                width: 50%;
-                font-size: 15px;
-                margin: 8px 0px;
-                padding: 12px 20px;
-                display: inline-block;
-                border: 2px solid green;
-                box-sizing: border-box;
-            }
-            input[type=radio]{
-                height: 18px;
-                width: 18px;
-            }
-            button:hover{
-                opacity:0.7;
-
-            }
-            .container{
-                padding: 50px;
-                background-color: white;
-            }
-            .imgcontainer {
-                text-align: center;
-                margin: 24px 0 12px 0;
-            }
-
-            img.avatar {
-                width: 10%;
-                border-radius: 50%;
-            }
-	</style>
-
+<head>
+  <title>Blog Page</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 
-<body style="padding-top: 60px;background-color: #f5f7f8 !important;">
+<body style="padding-top: 0px;background-color: #f5f7f8 !important;">
 	<div class="container">
-	<div class="row">
-		<div class="col-md-4 col-md-offset-4">
+
 		<h2>Blogs</h2>
-            {% for post in adminblog %}
-            <h5 class="card-title">{{ post.blog_title }}</h5>
-            <p class="card-text">{{ post.time_stamp }}</p>
-            <p class="card-body">{{ post.post_here }}</p>
-			<p class="card-text">{{ post.posted_by }}</p>
-            <hr>
+		<hr>
+
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Blog Title</th>
+        <th>Posted On</th>
+        <th>Description</th>
+		  <th>Posted By</th>
+		  <th>Edit</th>
+		  <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+	{% for post in adminblog %}
+			{% if post.is_deleted == False %}
+	        <tr>
+				<td><h5 class="card-title">{{ post.blog_title }}</h5></td>
+            <td><p class="card-text">{{ post.time_stamp }}</p></td>
+            <td><p class="card-body">{{ post.post_here }}</p></td>
+			<td><p class="card-text">{{ post.posted_by }}</p></td>
+			<td><a href="/users/edit/{{post.id}}">Edit{{post.id}}</a></td>
+			<td><a href="/users/delete/{{post.id}}">Delete{{post.id}}</a></td>
+            </tr>
+			{% else %}
+			<tr>
+				<td><h5 class="card-title">{{ post.blog_title }}</h5></td>
+            <td><p class="card-text">{{ post.time_stamp }}</p></td>
+            <td><p class="card-body">{{ post.post_here }}</p></td>
+			<td><p class="card-text">{{ post.posted_by }}</p></td>
+			<td><a href="/users/edit/{{post.id}}">Edit{{post.id}}</a></td>
+			<td>Deleted</td>
+            </tr>
+			{% endif %}
             {% endfor %}
-		</div>
-	</div>
+    </tbody>
+  </table>
+
+
+
+
 </div>
 
 </body>
 
 </html>
 
-
+{% endblock content %}

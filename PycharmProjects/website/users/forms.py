@@ -43,7 +43,7 @@ class RegistrationForm2(UserCreationForm):
         model = Users
 
         # Custom fields
-        fields = ["username","email", "phone_number","is_admin"]
+        fields = ["username","email", "phone_number", "is_admin"]
 
 
 class LogInForm(forms.Form):

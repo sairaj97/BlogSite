@@ -28,6 +28,6 @@ def loginaction(request):
         if t == ():
             return render(request, 'error.html')
         else:
-            return render(request, "index.html")
+            return render(request, "blogpost.html")
 
     return render(request, 'login.html')
