@@ -7,7 +7,7 @@ from django.contrib.auth.forms import AuthenticationForm #add this
 from django.contrib import messages
 from django.urls import reverse
 from django.views.generic.list import ListView
-
+from django.http import JsonResponse
 # Create your views here.
 
 def signup1(request):
@@ -44,53 +44,77 @@ def signup1(request):
         form = RegistrationForm1(None)
         return render(request, 'signup.html', {'form': form})
 
-
+#
 def signup(request):
     # check if the request is post
-    error = False
     if request.user.is_authenticated:
         return redirect(reverse('users:index1'))
     if request.method == 'POST':
-        if request.POST.get('submit') == 'Signup':
+        #if request.POST.get('submit') == 'Signup':
             # Pass the form data to the form class
-            details = RegistrationForm2(request.POST)
+        details  = RegistrationForm2(request.POST)
 
-            if details.is_valid():
-                # Temporarily make an object to be add some
-                # logic into the data if there is such a need
-                # before writing to the database
-                post = details.save(commit=False)
-            # Finally write the changes into database
-                post.save()
+        if details.is_valid():
+            details.save()
+            return JsonResponse({'statusCode': 200, 'message': "Inserted Successfully"})
+            #return redirect(reverse('users:signup1'))
+            #     # Temporarily make an object to be add some
+            #     # logic into the data if there is such a need
+            #     # before writing to the database
+            #     post = details.save(commit=False)
+            # # Finally write the changes into database
+            #     post.save()
 
-            # redirect it to some another page indicating data
-            # was inserted successfully
-                return redirect(reverse('users:signup1'))
+                #return redirect(reverse('users:signup1'))
 
-            else:
-                # Redirect back to the same page if the data
-                # was invalid
-                return render(request, "home1.html", {'form': details})
+
         elif request.POST.get('submit') == 'Login':
             form = LogInForm(request.POST)
             if form.is_valid():
                 email = form.cleaned_data["email"]
                 password = form.cleaned_data["password"]
-                user = authenticate(email=email, password=password)
-                if user:
+                try:
+                    user = authenticate(request, email=email, password=password)
+                except:
+                    return JsonResponse({'statusCode': 401,"message": "Invalid credential"})
+                if user is not None:
                     login(request, user)
-                    return redirect(reverse('users:index1'))
+                    return JsonResponse({'statusCode': 202,"message": "User Login Success"})
                 else:
-                    error = True
+                    return JsonResponse({'statusCode': 401,"message": "Invalid credential"})
+
+
+                #print(username, password)
+                # user = authenticate(email=email, password=password)
+                # if user:
+                #     login(request, user)
+                #     return redirect(reverse('users:index1'))
+                # else:
+                #     error = True
 
     else:
+        return render(request, 'home1.html')
 
 
-        # If the request is a GET request then,
-        # create an empty form object and
-        # render it into the page
+def user_signup(request):
+    user = Users.objects.get(pk=45)
+    print(type(user))
+    json_user = {}
+    json_user['email'] = user.email
+    json_user['password'] = user.password
+    json_user['username'] = user.username
+    print(user)
+    print(user.username)
+    print(user.email)
+    print(user.phone_number)
+    exit()
+    user = Users()
+    user.username = request.POST['username']
+    user.email = request.POST['email']
+    user.phone_number=request.POST['phone_number']
+    user.save()
+    return JsonResponse({'statusCode': 200, 'message': "Inserted Successfully"})
 
-        return render(request, 'home1.html', {'error': error})
 
 
 def log_in(request):

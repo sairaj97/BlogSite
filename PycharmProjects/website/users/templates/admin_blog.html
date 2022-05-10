@@ -39,8 +39,8 @@
             <td><p class="card-text">{{ post.time_stamp }}</p></td>
             <td><p class="card-body">{{ post.post_here }}</p></td>
 			<td><p class="card-text">{{ post.posted_by }}</p></td>
-			<td><a href="/users/edit/{{post.id}}">Edit{{post.id}}</a></td>
-			<td><a href="/users/delete/{{post.id}}">Delete{{post.id}}</a></td>
+			<td><a href="/users/adminedit/{{post.id}}">Edit{{post.id}}</a></td>
+			<td><a href="/users/admindelete/{{post.id}}">Delete{{post.id}}</a></td>
             </tr>
 			{% else %}
 			<tr>
@@ -48,7 +48,7 @@
             <td><p class="card-text">{{ post.time_stamp }}</p></td>
             <td><p class="card-body">{{ post.post_here }}</p></td>
 			<td><p class="card-text">{{ post.posted_by }}</p></td>
-			<td><a href="/users/edit/{{post.id}}">Edit{{post.id}}</a></td>
+			<td><a href="/users/adminedit/{{post.id}}">Edit{{post.id}}</a></td>
 			<td>Deleted</td>
             </tr>
 			{% endif %}

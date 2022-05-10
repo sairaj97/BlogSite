@@ -10,6 +10,7 @@ urlpatterns = [
     path('blogpost/', blogpost, name='blogpost'),
     path('index/', index1, name='index1'),
     path('signup/', signup, name='signup'),
+    path('user_signup/', user_signup, name='user_signup'),
     path('signup1/', signup1, name='signup1'),
     path('myblog/', MyBlogListView.as_view(), name='myblog'),
     path('blogs/', blog_View.as_view(), name='adminblog'),

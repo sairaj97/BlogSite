@@ -100,9 +100,10 @@
       <screen x="0" y="23" width="1920" height="974" />
     </state>
     <state x="673" y="291" width="667" height="486" key="find.popup/0.23.1920.974@0.23.1920.974" timestamp="1650624950430" />
-    <state x="672" y="258" width="670" height="667" key="search.everywhere.popup" timestamp="1651129797748">
-      <screen x="0" y="23" width="1920" height="960" />
+    <state x="672" y="258" width="670" height="666" key="search.everywhere.popup" timestamp="1652182308639">
+      <screen x="0" y="23" width="1920" height="958" />
     </state>
+    <state x="672" y="258" width="670" height="666" key="search.everywhere.popup/0.23.1920.958@0.23.1920.958" timestamp="1652182308639" />
     <state x="672" y="258" width="670" height="667" key="search.everywhere.popup/0.23.1920.960@0.23.1920.960" timestamp="1651129797748" />
     <state x="672" y="261" width="670" height="676" key="search.everywhere.popup/0.23.1920.974@0.23.1920.974" timestamp="1650631475397" />
   </component>

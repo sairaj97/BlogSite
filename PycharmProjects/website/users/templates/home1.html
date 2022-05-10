@@ -20,7 +20,7 @@ html,body{
   height: 100%;
   width: 100%;
   place-items: center;
-  background: -webkit-linear-gradient(left, #8b008b, #FF6347, #FFA500, #008080, #191970);
+  background: -webkit-linear-gradient(left, #331533, #7b2681, #230435, #7b2681, #331533);
 }
 ::selection{
   background: #fa4299;
@@ -29,7 +29,7 @@ html,body{
 .wrapper{
   overflow: hidden;
   max-width: 390px;
-  background: #FFFACD;
+  background: #e2bae8;
   padding: 30px;
   border-radius: 5px;
   box-shadow: 0px 15px 20px rgba(0,0,0,0.1);
@@ -212,47 +212,47 @@ form .btn input[type="submit"]{
                <div class="slider-tab"></div>
             </div>
             <div class="form-inner">
-               <form action="" method="post" class="login">
+               <form action="{% url 'users:signup' %}" method="post" class="login" id = "loginForm">
                   {%csrf_token %}
 
                   <div class="field">
-                     <input type="email" placeholder="Email Address" name="email" required>
+                     <input type="email" placeholder="Email Address" name="email" required id="id_email1">
                   </div>
                   <div class="field">
-                     <input type="password" placeholder="Password" name="password" required>
+                     <input type="password" placeholder="Password" name="password" required id="id_password">
                   </div>
                   <div class="pass-link">
                      <a href="#">Forgot password?</a>
                   </div>
                   <div class="field btn">
                      <div class="btn-layer"></div>
-                     <input type="submit" name='submit' value="Login">
+                     <input type="submit" name='submit' value="Login" id="id_Login">
                   </div>
                   <div class="signup-link">
                      Not a member? <a href="">Signup now</a>
                   </div>
                </form>
-               <form action="" method="post" class="signup">
+               <form action="{% url 'users:signup' %}" method="POST" class="signup" id = "signupForm">
 
                   {%csrf_token %}
 
                   <div class="field">
-                     <input type="text" placeholder="Username" name="username" required>
+                     <input type="text" placeholder="Username" name="username" required  id="id_username">
                   </div>
                   <div class="field">
-                     <input type="email" placeholder="Email Address" name="email" required>
+                     <input type="email" placeholder="Email Address" name="email" required id="id_email">
                   </div>
                   <div class="field">
-                     <input type="number" placeholder="Enter your phone number" name="phone_number" required><br>
+                     <input type="number" placeholder="Enter your phone number" name="phone_number" required id="id_phone_number"><br>
                   </div>
                   <div class="field">
-                     <input type="password" placeholder="Password" name="password1" required>
+                     <input type="password" placeholder="Password" name="password1" required id="id_password1">
                   </div>
                   <div class="field">
-                     <input type="password" placeholder="Confirm Password" name="password2" required>
+                     <input type="password" placeholder="Confirm Password" name="password2" required id="id_password2">
                   </div>
                   <div class="field">
-                     <input type="number" placeholder="Admin?" name="is_admin" required>
+                     <input type="number" placeholder="Admin?" name="is_admin" required id="id_is_admin">
                   </div>
 
                   <div class="field btn">
@@ -260,10 +260,101 @@ form .btn input[type="submit"]{
                      <input type="submit" name='submit' value="Signup">
                   </div>
                </form>
-
-
-
             </div>
+            <script src="https://code.jquery.com/jquery-3.6.0.js"
+                    integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+            <script>
+
+               $(document).on('submit', '#signupForm',function(e){
+
+               e.preventDefault();
+               var username = $('#id_username').val()
+               console.log(username);
+               var email = $('#id_email').val()
+               console.log(email);
+               var phone_number = $('#id_phone_number').val()
+               var password1 = $('#id_password1').val()
+               var password2 = $('#id_password2').val()
+               var is_admin = $('#id_is_admin').val()
+
+
+               //ajax call
+
+               $.ajax({
+
+               type: 'POST',
+               url: '/users/signup/',
+               dataType:"json",
+               data : {
+                     username :username,
+                     email :email,
+                     phone_number :phone_number,
+                     password1 :password1,
+                     password2 :password2,
+                     is_admin :is_admin,
+                     csrfmiddlewaretoken : $('input[name=csrfmiddlewaretoken]').val()
+                     },
+              success:function(response){
+                      if (response.statusCode == 200) {
+                        alert(response.message);
+                        window.location.href = "{% url 'users:signup1' %}";
+                        //window.location.reload();
+                      } else {
+                        alert(response.message);
+                      }
+
+              }
+              })
+              });
+
+
+              // Login
+
+               </script>
+
+             <script>
+
+               $(document).on('submit', '#loginForm', function(e){
+
+               e.preventDefault();
+               var email1 = $('#id_email1').val()
+               console.log(email1);
+               var password = $('#id_password').val()
+               var submit = $('#id_Login').val()
+
+
+               //ajax call
+
+               $.ajax({
+
+               type: 'POST',
+               url: '/users/signup/',
+               dataType:"json",
+               data : {
+                     email :email1,
+                     password :password,
+                     submit :submit,
+
+                     csrfmiddlewaretoken : $('input[name=csrfmiddlewaretoken]').val()
+                     },
+              success:function(response){
+                      if (response.statusCode == 202) {
+                        alert(response.message);
+                        window.location.href = "{% url 'users:index1' %}";
+                        //window.location.reload();
+                      } else {
+                        alert(response.message);
+                      }
+
+              }
+              })
+              });
+
+
+              // Login
+
+               </script>
          </div>
       </div>
       <script>
