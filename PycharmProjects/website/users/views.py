@@ -26,23 +26,24 @@ def signup1(request):
             #post.user_id = current_user.id
             # Finally write the changes into database
             post.save()
+            return JsonResponse({'statusCode': 200, 'message': "Inserted Successfully"})
 
             # redirect it to some another page indicating data
             # was inserted successfully
-            return redirect(reverse('users:signup'))
+            #return redirect(reverse('users:signup'))
 
         else:
 
             # Redirect back to the same page if the data
             # was invalid
-            return render(request, "signup.html", {'form': details})
+            return render(request, "signup1.html", {'form': details})
     else:
 
         # If the request is a GET request then,
         # create an empty form object and
         # render it into the page
         form = RegistrationForm1(None)
-        return render(request, 'signup.html', {'form': form})
+        return render(request, 'signup1.html', {'form': form})
 
 #
 def signup(request):

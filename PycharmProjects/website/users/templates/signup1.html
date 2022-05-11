@@ -74,7 +74,7 @@ html,body{
 .slide-controls .slider-tab{
   position: absolute;
   height: 100%;
-  width: 50%;
+  width: 100%;
   left: 0;
   z-index: 0;
   border-radius: 5px;
@@ -84,24 +84,7 @@ html,body{
 input[type="radio"]{
   display: none;
 }
-#signup:checked ~ .slider-tab{
-  left: 50%;
-}
-#signup:checked ~ label.signup{
-  color: #fff;
-  cursor: default;
-  user-select: none;
-}
-#signup:checked ~ label.login{
-  color: #000;
-}
-#login:checked ~ label.signup{
-  color: #000;
-}
-#login:checked ~ label.login{
-  cursor: default;
-  user-select: none;
-}
+
 .wrapper .form-container{
   width: 100%;
   overflow: hidden;
@@ -195,8 +178,8 @@ form .btn input[type="submit"]{
    <body>
       <div class="wrapper">
          <div class="title-text">
-            <div class="title login">
-               Login Form
+            <div class="title details">
+               Personal Details
             </div>
             <div class="title signup">
                Signup Form
@@ -204,60 +187,35 @@ form .btn input[type="submit"]{
          </div>
          <div class="form-container">
             <div class="slide-controls">
-               <input type="radio" name="slide" id="login" checked>
-               <input type="radio" name="slide" id="signup" >
                <input type="radio" name="slide" id="details" >
-               <label for="login" class="slide login">Login</label>
-               <label for="signup" class="slide signup">Signup</label>
+               <label for="details" class="slide signup">Details</label>
                <div class="slider-tab"></div>
             </div>
             <div class="form-inner">
-               <form action="{% url 'users:signup' %}" method="post" class="login" id = "loginForm">
-                  {%csrf_token %}
-
-                  <div class="field">
-                     <input type="email" placeholder="Email Address" name="email" required id="id_email1">
-                  </div>
-                  <div class="field">
-                     <input type="password" placeholder="Password" name="password" required id="id_password">
-                  </div>
-                  <div class="pass-link">
-                     <a href="#">Forgot password?</a>
-                  </div>
-                  <div class="field btn">
-                     <div class="btn-layer"></div>
-                     <input type="submit" name='submit' value="Login" id="id_Login">
-                  </div>
-                  <div class="signup-link">
-                     Not a member? <a href="">Signup now</a>
-                  </div>
-               </form>
-               <form action="{% url 'users:signup' %}" method="POST" class="signup" id = "signupForm">
+               <form action="{% url 'users:signup1' %}" method="POST" class="details" id = "detailsForm">
 
                   {%csrf_token %}
 
                   <div class="field">
-                     <input type="text" placeholder="Username" name="username" required  id="id_username">
+                     <input type="text" placeholder="First Name" name="first_name" required  id="id_first_name">
                   </div>
                   <div class="field">
-                     <input type="email" placeholder="Email Address" name="email" required id="id_email">
+                     <input type="text" placeholder="Last Name" name="last_name" required id="id_last_name">
                   </div>
                   <div class="field">
-                     <input type="number" placeholder="Enter your phone number" name="phone_number" required id="id_phone_number"><br>
+                     <input type="number" placeholder="Age" name="age" required id="id_age"><br>
                   </div>
                   <div class="field">
-                     <input type="password" placeholder="Password" name="password1" required id="id_password1">
+                     <input type="text" placeholder="Address" name="address" required id="id_address">
                   </div>
                   <div class="field">
-                     <input type="password" placeholder="Confirm Password" name="password2" required id="id_password2">
-                  </div>
-                  <div class="field">
-                     <input type="number" placeholder="Admin?" name="is_admin" required id="id_is_admin">
+                     {{ form.gender }}
+                     {{ form.user }}
                   </div>
 
                   <div class="field btn">
                      <div class="btn-layer"></div>
-                     <input type="submit" name='submit' value="Signup">
+                     <input type="submit" name='submit' value="Submit">
                   </div>
                </form>
             </div>
@@ -266,17 +224,17 @@ form .btn input[type="submit"]{
 
             <script>
 
-               $(document).on('submit', '#signupForm',function(e){
+               $(document).on('submit', '#detailsForm',function(e){
 
                e.preventDefault();
-               var username = $('#id_username').val()
-               console.log(username);
-               var email = $('#id_email').val()
-               console.log(email);
-               var phone_number = $('#id_phone_number').val()
-               var password1 = $('#id_password1').val()
-               var password2 = $('#id_password2').val()
-               var is_admin = $('#id_is_admin').val()
+               var first_name = $('#id_first_name').val()
+               console.log(first_name);
+               var last_name = $('#id_last_name').val()
+               console.log(last_name);
+               var age = $('#id_age').val()
+               var address = $('#id_address').val()
+               var gender = $('#id_gender').val()
+               var user = $('#id_user').val()
 
 
                //ajax call
@@ -284,21 +242,21 @@ form .btn input[type="submit"]{
                $.ajax({
 
                type: 'POST',
-               url: '/users/signup/',
+               url: '/users/signup1/',
                dataType:"json",
                data : {
-                     username :username,
-                     email :email,
-                     phone_number :phone_number,
-                     password1 :password1,
-                     password2 :password2,
-                     is_admin :is_admin,
+                     first_name :first_name,
+                     last_name :last_name,
+                     age :age,
+                     gender :gender,
+                     address :address,
+                     user :user,
                      csrfmiddlewaretoken : $('input[name=csrfmiddlewaretoken]').val()
                      },
               success:function(response){
                       if (response.statusCode == 200) {
                         alert(response.message);
-                        window.location.href = "{% url 'users:signup1' %}";
+                        window.location.href = "{% url 'users:signup' %}";
                         //window.location.reload();
                       } else {
                         alert(response.message);
@@ -313,70 +271,10 @@ form .btn input[type="submit"]{
 
                </script>
 
-             <script>
 
-               $(document).on('submit', '#loginForm', function(e){
-
-               e.preventDefault();
-               var email1 = $('#id_email1').val()
-               console.log(email1);
-               var password = $('#id_password').val()
-               var submit = $('#id_Login').val()
-
-
-               //ajax call
-
-               $.ajax({
-
-               type: 'POST',
-               url: '/users/signup/',
-               dataType:"json",
-               data : {
-                     email :email1,
-                     password :password,
-                     submit :submit,
-
-                     csrfmiddlewaretoken : $('input[name=csrfmiddlewaretoken]').val()
-                     },
-              success:function(response){
-                      if (response.statusCode == 202) {
-                        alert(response.message);
-                        window.location.href = "{% url 'users:index1' %}";
-                        //window.location.reload();
-                      } else {
-                        alert(response.message);
-                      }
-
-              }
-              })
-              });
-
-
-              // Login
-
-               </script>
          </div>
       </div>
-      <script>
-         const loginText = document.querySelector(".title-text .login");
-         const loginForm = document.querySelector("form.login");
-         const loginBtn = document.querySelector("label.login");
-         const signupBtn = document.querySelector("label.signup");
-         const signupLink = document.querySelector("form .signup-link a");
 
-         signupBtn.onclick = (()=>{
-           loginForm.style.marginLeft = "-50%";
-           loginText.style.marginLeft = "-50%";
-         });
-         loginBtn.onclick = (()=>{
-           loginForm.style.marginLeft = "0%";
-           loginText.style.marginLeft = "0%";
-         });
-         signupLink.onclick = (()=>{
-           signupBtn.click();
-           return false;
-         });
-      </script>
    </body>
 </html>
 
