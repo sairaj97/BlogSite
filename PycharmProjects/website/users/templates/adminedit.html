@@ -1,4 +1,3 @@
-{% extends 'base.html' %}
 {% load bootstrap5 %}
 {% bootstrap_messages %}
 
@@ -102,7 +101,7 @@ all the form details in here
                var post_here = $('#id_post_here').val()
                console.log(post_here);
                var url = $(location).attr("href");
-               
+
 
                //ajax call
 
@@ -119,7 +118,7 @@ all the form details in here
               success:function(response){
                       if (response.statusCode == 200) {
                         alert(response.message);
-                        window.location.href = "{% url 'users:myblog' %}";
+                        window.location.href = "{% url 'users:adminblog' %}";
                         //window.location.reload();
                       } else {
                         alert(response.message);

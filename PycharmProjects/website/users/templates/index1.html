@@ -16,14 +16,20 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<style>#bg{
+    background-size: 2000px 1100px;
+    background-repeat: no-repeat;
+    background-position: top;
+    background-attachment: fixed;
+}</style>
 
 </head>
 
-<body style="padding-top: 0px;background-color: #f5f7f8 !important;">
+<body id="bg" style="background-image: url('{% static "images/1.jpeg"%}')";>
 	<div class="container">
 	<div class="row">
 		<div class="col-md-4 col-md-offset-4">
-		<h1>Welcome</h1>
+		<h1 style="color:silver">Welcome</h1>
 
 		</div>
 	</div>

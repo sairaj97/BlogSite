@@ -1,5 +1,6 @@
 {% load bootstrap5 %}
 {% bootstrap_messages %}
+{% load static %}
 <!DOCTYPE html>
 <!-- Created By CodingNepal -->
 <html lang="en" dir="ltr">
@@ -9,6 +10,11 @@
       <link rel="stylesheet" type="text/css" href="style.css" media="screen">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
        <style>
+       #bg{
+    background-size: 2000px 1100px;
+    background-repeat: no-repeat;
+    background-position: top;
+    background-attachment: fixed;}
 {
   margin: 0;
   padding: 0;
@@ -29,14 +35,15 @@ html,body{
 .wrapper{
   overflow: hidden;
   max-width: 390px;
-  background: #e2bae8;
+  background: transparent;
   padding: 30px;
-  border-radius: 5px;
-  box-shadow: 0px 15px 20px rgba(0,0,0,0.1);
+  border-radius: 100px;
+  box-shadow: 0px 5px 50px rgba(0,0,0,0.8);
 }
 .wrapper .title-text{
   display: flex;
   width: 200%;
+  color: #F5F5F5;
 }
 .wrapper .title{
   width: 50%;
@@ -93,10 +100,10 @@ input[type="radio"]{
   user-select: none;
 }
 #signup:checked ~ label.login{
-  color: #000;
+  color: #fff;
 }
 #login:checked ~ label.signup{
-  color: #000;
+  color: #fff;
 }
 #login:checked ~ label.login{
   cursor: default;
@@ -169,7 +176,7 @@ form .btn .btn-layer{
   width: 300%;
   position: absolute;
   left: -100%;
-  background: -webkit-linear-gradient(right, #a445b2, #fa4299, #a445b2, #fa4299);
+  background: -webkit-linear-gradient(right, #fa4299, #a445b2);
   border-radius: 5px;
   transition: all 0.4s ease;;
 }
@@ -192,7 +199,7 @@ form .btn input[type="submit"]{
 }
 </style>
    </head>
-   <body>
+   <body id="bg" style="background-image: url('{% static "images/2.jpeg"%}')";>
       <div class="wrapper">
          <div class="title-text">
             <div class="title login">

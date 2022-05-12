@@ -23,7 +23,7 @@
 	<div class="row">
 		<div class="col-md-4 col-md-offset-4">
 		<h2>Posts</h2>
-			<form action="" method="post"><input type='hidden'/>
+			<form action="" method="post" id="blogForm"><input type='hidden'/>
 			{%csrf_token %}
 
 				{% bootstrap_form form %}
@@ -40,6 +40,50 @@ all the form details in here
 				</div>
 
 				</form>
+			<script src="https://code.jquery.com/jquery-3.6.0.js"
+                    integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+            <script>
+
+               $(document).on('submit', '#blogForm',function(e){
+
+               e.preventDefault();
+               var blog_title = $('#id_blog_title').val()
+               console.log(blog_title);
+               var post_here = $('#id_post_here').val()
+               console.log(post_here);
+               var url = $(location).attr("href");
+
+
+               //ajax call
+
+               $.ajax({
+
+               type: 'POST',
+               url: url,
+               dataType:"json",
+               data : {
+                     blog_title :blog_title,
+                     post_here :post_here,
+                     csrfmiddlewaretoken : $('input[name=csrfmiddlewaretoken]').val()
+                     },
+              success:function(response){
+                      if (response.statusCode == 200) {
+                        alert(response.message);
+                        //window.location.href = "{% url 'users:myblog' %}";
+                        window.location.reload();
+                      } else {
+                        alert(response.message);
+                      }
+
+              }
+              })
+              });
+
+
+              // Login
+
+               </script>
 		</div>
 	</div>
 </div>

@@ -26,7 +26,7 @@ def signup1(request):
             #post.user_id = current_user.id
             # Finally write the changes into database
             post.save()
-            return JsonResponse({'statusCode': 200, 'message': "Inserted Successfully"})
+            return JsonResponse({'statusCode': 200, 'message': "Details submitted Successfully"})
 
             # redirect it to some another page indicating data
             # was inserted successfully
@@ -158,7 +158,8 @@ def blogpost(request):
             post.user_id = current_user.id
             post.posted_by = current_user
             post.save()
-            return redirect(reverse('users:blogpost'))
+            return JsonResponse({'statusCode': 200, 'message': "Inserted Successfully"})
+            #return redirect(reverse('users:blogpost'))
                 #render(request, 'blogpost.html', {'form': details, 'error': error})
     else:
         form = PostForm()
@@ -169,7 +170,6 @@ def blogpost(request):
 
 def index1(request):
     return render(request, 'index1.html')
-
 
 
 class MyBlogListView(ListView):
@@ -213,7 +213,8 @@ def blog_edit(request, pk):
         post = PostForm(request.POST or None, instance=obj)
         if post.is_valid():
             post.save()
-            return redirect(reverse('users:myblog'))
+            return JsonResponse({'statusCode': 200, 'message': "Updated Successfully"})
+            #return redirect(reverse('users:myblog'))
     else:
         form = PostForm(instance=obj)
         return render(request, "edit.html", {'form': form})
@@ -227,7 +228,8 @@ def blog_delete(request, pk):
             post = details.save(commit=False)
             post.is_deleted = True
             post.save()
-            return redirect(reverse('users:myblog'))
+            return JsonResponse({'statusCode': 200, 'message': "Deleted Successfully"})
+            #return redirect(reverse('users:myblog'))
     else:
         form = PostForm(instance=obj)
         return render(request, "delete.html", {'form': form})
@@ -239,10 +241,11 @@ def admin_edit(request, pk):
         post = PostForm(request.POST or None, instance=obj)
         if post.is_valid():
             post.save()
-            return redirect(reverse('users:adminblog'))
+            return JsonResponse({'statusCode': 200, 'message': "Updated Successfully"})
+            #return redirect(reverse('users:adminblog'))
     else:
         form = PostForm(instance=obj)
-        return render(request, "edit.html", {'form': form})
+        return render(request, "adminedit.html", {'form': form})
 
 def admin_delete(request, pk):
     obj = get_object_or_404(Post, id=pk)
@@ -252,7 +255,8 @@ def admin_delete(request, pk):
             post = details.save(commit=False)
             post.is_deleted = True
             post.save()
-            return redirect(reverse('users:adminblog'))
+            return JsonResponse({'statusCode': 200, 'message': "Deleted Successfully"})
+            #return redirect(reverse('users:adminblog'))
     else:
         form = PostForm(instance=obj)
-        return render(request, "delete.html", {'form': form})
+        return render(request, "admindelete.html", {'form': form})
