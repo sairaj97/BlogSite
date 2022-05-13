@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% load static %}
 {% load bootstrap5 %}
 {% bootstrap_messages %}
 
@@ -17,7 +17,7 @@
                 background-color: white;
             }
             button{
-                background-color: #4CAF50;
+                background: -webkit-linear-gradient(left, orange, gold);
                 width: 25%;
                 padding: 15px;
                 color: black;
@@ -28,9 +28,7 @@
             label{
                 font-size: 20px;
             }
-            form{
-                border: 3px solid #f1f1f1;
-            }
+
             input[type=email],input[type=text]{
                 width: 50%;
                 font-size: 15px;
@@ -39,6 +37,7 @@
                 display: inline-block;
                 border: 2px solid green;
                 box-sizing: border-box;
+
             }
             input[type=radio]{
                 height: 18px;
@@ -50,7 +49,7 @@
             }
             .container{
                 padding: 50px;
-                background-color: white;
+                background-color: tranparent;
             }
             .imgcontainer {
                 text-align: center;
@@ -65,11 +64,11 @@
 
 </head>
 
-<body style="padding-top: 60px;background-color: #f5f7f8 !important;">
+<body id="bg" style="background-image: url('{% static "images/3.jpeg"%}')";>
 	<div class="container">
 	<div class="row">
 		<div class="col-md-4 col-md-offset-4">
-		<h2>Posts</h2>
+		<h2 style="color:gold;">Posts</h2>
 			<form action="" method="post" id = "editForm"><input type='hidden'/>
 			{%csrf_token %}
 
